@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Smart Dress Shop | AI-Powered Luxury Fashion & Styling Platform</title>
+  <meta name="description" content="Commercial AI-powered fashion shopping platform providing personalized outfits based on preferences, occasion, color, style, size, and budget." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/views.css" />
+</head>
+<body>
+  <!-- Ambient Gradient Glow Background -->
+  <div class="ambient-glow"></div>
+
+  <!-- Quick System Links Sub-Bar -->
+  <div class="sub-nav-bar">
+    <div class="container sub-nav-inner">
+      <div class="system-badge-links">
+        <a href="#architecture" class="system-badge-link" data-nav="architecture">📐 System Architecture</a>
+        <span>•</span>
+        <a href="#architecture" class="system-badge-link" data-nav="architecture">🗄️ Database Model</a>
+        <span>•</span>
+        <a href="#problem" class="system-badge-link" data-nav="problem">💡 Customer Problem</a>
+        <span>•</span>
+        <a href="#audit" class="system-badge-link" data-nav="audit">🔬 AI Prompt Audit</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span class="live-status-pill"><span class="live-status-dot"></span> AI Recommendation Engine v2.4 Active</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sticky Header & Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo" data-nav="home">
+        <div class="brand-icon-box">👗</div>
+        <div class="brand-title">
+          <span class="main-name">AI Smart Dress</span>
+          <span class="sub-tag">Intelligent Fashion Shop</span>
+        </div>
+      </a>
+
+      <!-- Global Smart Search Input (Section 2 & 7) -->
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="global-search-input" 
+            class="search-input" 
+            placeholder="Search dresses, styles, colors..." 
+            autocomplete="off"
+          />
+          <button id="search-clear-btn" class="search-clear-btn">✕</button>
+        </div>
+
+        <!-- Quick Suggestions Dropdown (Section 7) -->
+        <div id="search-suggestions" class="search-suggestions">
+          <div class="suggestion-header">Popular AI Searches</div>
+          <div class="suggestion-item" data-query="black wedding dress">
+            <span>✨</span> <span>black wedding dress</span>
+            <span class="suggestion-tag">Party / Wedding</span>
+          </div>
+          <div class="suggestion-item" data-query="casual shirt">
+            <span>✨</span> <span>casual shirt</span>
+            <span class="suggestion-tag">Men Casual</span>
+          </div>
+          <div class="suggestion-item" data-query="college outfit">
+            <span>✨</span> <span>college outfit</span>
+            <span class="suggestion-tag">Streetwear</span>
+          </div>
+          <div class="suggestion-item" data-query="formal blue dress">
+            <span>✨</span> <span>formal blue dress</span>
+            <span class="suggestion-tag">Office / Formal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation Menu (Section 2) -->
+      <nav class="desktop-nav">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active" data-nav="home">Home</a></li>
+          <li><a href="#shop" class="nav-link" data-nav="shop">Shop</a></li>
+          <li><a href="#stylist" class="nav-link ai-highlight" data-nav="stylist">✨ AI Stylist</a></li>
+          <li><a href="#categories" class="nav-link" data-nav="categories">Categories</a></li>
+          <li><a href="#recommendations" class="nav-link" data-nav="recommendations">Recommendations</a></li>
+          <li><a href="#orders" class="nav-link" data-nav="orders">Orders</a></li>
+          <li><a href="#profile" class="nav-link" data-nav="profile">Profile</a></li>
+          <li><a href="#admin" class="nav-link" data-nav="admin">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Icons (Wishlist, Cart, Theme Toggle, Mobile Toggle) -->
+      <div class="header-actions">
+        <!-- Wishlist Icon (Section 13) -->
+        <a href="#wishlist" class="icon-btn" data-nav="wishlist" title="Wishlist">
+          <span>❤️</span>
+          <span id="nav-wishlist-badge" class="icon-badge">2</span>
+        </a>
+
+        <!-- Shopping Cart Icon (Section 14) -->
+        <a href="#cart" class="icon-btn" data-nav="cart" title="Shopping Cart">
+          <span>🛒</span>
+          <span id="nav-cart-badge" class="icon-badge" style="display:none;">0</span>
+        </a>
+
+        <!-- Theme Toggle Button (Light/Dark Mode) -->
+        <button id="theme-toggle-btn" class="icon-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+          🌙
+        </button>
+
+        <!-- Mobile Drawer Toggle Button -->
+        <button id="mobile-menu-btn" class="mobile-toggle-btn" aria-label="Open Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Overlay & Drawer -->
+  <div id="drawer-overlay" class="mobile-drawer-overlay"></div>
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="brand-icon-box">👗</div>
+        <div class="brand-title">
+          <span class="main-name">AI Smart Dress</span>
+        </div>
+      </div>
+      <button id="close-drawer-btn" class="icon-btn" style="border:none;">✕</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#home" class="nav-link" data-nav="home">🏠 Home</a></li>
+      <li><a href="#shop" class="nav-link" data-nav="shop">🛍 Shop Catalog</a></li>
+      <li><a href="#stylist" class="nav-link ai-highlight" data-nav="stylist">✨ Personal AI Stylist</a></li>
+      <li><a href="#categories" class="nav-link" data-nav="categories">📂 Categories</a></li>
+      <li><a href="#recommendations" class="nav-link" data-nav="recommendations">🎯 AI Recommendations</a></li>
+      <li><a href="#wishlist" class="nav-link" data-nav="wishlist">❤️ Wishlist</a></li>
+      <li><a href="#cart" class="nav-link" data-nav="cart">🛒 Cart</a></li>
+      <li><a href="#orders" class="nav-link" data-nav="orders">📦 Order Tracking</a></li>
+      <li><a href="#profile" class="nav-link" data-nav="profile">👤 User Profile</a></li>
+      <li><a href="#admin" class="nav-link" data-nav="admin">📊 Admin Dashboard</a></li>
+      <li style="border-top: 1px solid var(--border-subtle); margin-top:8px; padding-top:8px;">
+        <a href="#architecture" class="nav-link" data-nav="architecture">📐 Architecture & DB</a>
+      </li>
+      <li><a href="#problem" class="nav-link" data-nav="problem">💡 Problem Validation</a></li>
+      <li><a href="#audit" class="nav-link" data-nav="audit">🔬 AI Prompt Audit</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN APP CONTAINER FOR ALL VIEWS (SPA ARCHITECTURE) -->
+  <main id="app-root">
+
+    <!-- ====================================================================
+         VIEW 1: HOME PAGE (Section 3)
+         ==================================================================== -->
+    <section id="view-home" class="view-section active">
+      <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="hero-badge">
+            <span>✨</span> Next-Generation Neural Fashion Intelligence
+          </div>
+          <h1 class="hero-title">
+            Find Your Perfect Style <span class="text-gradient">with AI</span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover personalized outfits designed around your style, occasion, and preferences. Powered by weighted semantic matching and computer vision heuristics.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#stylist" class="btn btn-primary btn-lg" data-nav="stylist">
+              ✨ Try AI Stylist
+            </a>
+            <a href="#shop" class="btn btn-outline btn-lg" data-nav="shop">
+              🛍 Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Shop by Category Section (Section 3) -->
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Shop by Category</h2>
+            <p class="section-desc">Hand-curated collections across curated aesthetics and lifestyle moments.</p>
+          </div>
+          <a href="#categories" class="btn btn-outline btn-sm" data-nav="categories">View All Categories →</a>
+        </div>
+        <div id="categories-grid" class="categories-grid">
+          <!-- Dynamically populated from data.js -->
+        </div>
+
+        <!-- Spotlight AI Banner -->
+        <div class="spotlight-banner">
+          <div>
+            <span class="badge badge-ai-match" style="margin-bottom:10px;">Deep Neural Fit</span>
+            <h3 style="font-size:1.8rem; margin-bottom:8px;">Struggling to Match Outfits for an Event?</h3>
+            <p style="color:var(--text-secondary); max-width:550px;">
+              Input your event, color choice, and budget into our AI Stylist. Our algorithm builds complete head-to-toe ensembles with 90%+ compatibility scoring.
+            </p>
+          </div>
+          <a href="#stylist" class="btn btn-primary btn-lg" data-nav="stylist" style="flex-shrink:0;">
+            Launch Personal Stylist ✨
+          </a>
+        </div>
+
+        <!-- Trending Now Showcase (Section 3: At least 6 product cards) -->
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Trending Now</h2>
+            <p class="section-desc">Most sought-after fashion picks with high AI shopper satisfaction ratings.</p>
+          </div>
+          <a href="#shop" class="btn btn-outline btn-sm" data-nav="shop">Explore Full Catalog →</a>
+        </div>
+        <div id="trending-products-grid" class="products-grid">
+          <!-- Dynamically populated from data.js (8 products) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 2: AI STYLIST PAGE (Section 4, 5, 6) - CORE FEATURE
+         ==================================================================== -->
+    <section id="view-stylist" class="view-section">
+      <div class="container stylist-container">
+        <!-- Heading & Description (Section 4) -->
+        <div style="text-align: center; margin-bottom: var(--spacing-2xl);">
+          <div class="hero-badge">
+            <span>✨</span> Algorithmic Outfit Generation
+          </div>
+          <h1 class="section-title" style="font-size:2.8rem; margin-bottom:10px;">
+            ✨ Your Personal AI Stylist
+          </h1>
+          <p class="section-desc" style="font-size:1.1rem; max-width:620px; margin: 0 auto;">
+            Tell us what you're looking for and we'll find the perfect outfit for you.
+          </p>
+        </div>
+
+        <!-- Large AI Stylist Interface Form (Section 4) -->
+        <div class="stylist-card">
+          <form id="ai-stylist-form">
+            <div class="stylist-grid">
+              <!-- Occasion Input -->
+              <div class="form-group">
+                <label class="form-label" for="stylist-occasion">
+                  <span>Occasion</span>
+                  <span style="font-size:0.75rem; color:var(--accent-purple);">Event context</span>
+                </label>
+                <select id="stylist-occasion" class="form-select">
+                  <option value="Wedding" selected>Wedding</option>
+                  <option value="Party">Party</option>
+                  <option value="College">College</option>
+                  <option value="Office">Office</option>
+                  <option value="Casual">Casual</option>
+                  <option value="Festival">Festival</option>
+                  <option value="Date">Date</option>
+                </select>
+              </div>
+
+              <!-- Preferred Style Input -->
+              <div class="form-group">
+                <label class="form-label" for="stylist-style">
+                  <span>Preferred Style</span>
+                  <span style="font-size:0.75rem; color:var(--accent-purple);">Aesthetic vibe</span>
+                </label>
+                <select id="stylist-style" class="form-select">
+                  <option value="Modern" selected>Modern</option>
+                  <option value="Casual">Casual</option>
+                  <option value="Formal">Formal</option>
+                  <option value="Traditional">Traditional</option>
+                  <option value="Streetwear">Streetwear</option>
+                  <option value="Minimal">Minimal</option>
+                </select>
+              </div>
+
+              <!-- Preferred Color Input -->
+              <div class="form-group">
+                <label class="form-label" for="stylist-color">
+                  <span>Preferred Color</span>
+                  <span style="font-size:0.75rem; color:var(--accent-purple);">Palette preference</span>
+                </label>
+                <select id="stylist-color" class="form-select">
+                  <option value="Black" selected>Black</option>
+                  <option value="White">White</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Red">Red</option>
+                  <option value="Green">Green</option>
+                  <option value="Pink">Pink</option>
+                  <option value="Any Color">Any Color</option>
+                </select>
+              </div>
+
+              <!-- Size Input -->
+              <div class="form-group">
+                <label class="form-label" for="stylist-size">
+                  <span>Size</span>
+                  <span style="font-size:0.75rem; color:var(--accent-purple);">Body sizing</span>
+                </label>
+                <select id="stylist-size" class="form-select">
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M" selected>M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Budget Slider Input (₹500 – ₹10,000) -->
+            <div class="form-group" style="margin-top: var(--spacing-lg);">
+              <label class="form-label" for="stylist-budget-slider">
+                <span>Budget</span>
+                <span id="stylist-budget-val" class="budget-val-indicator">₹5,000</span>
+              </label>
+              <div class="range-slider-wrapper">
+                <input 
+                  type="range" 
+                  id="stylist-budget-slider" 
+                  class="range-slider" 
+                  min="500" 
+                  max="10000" 
+                  step="250" 
+                  value="5000" 
+                />
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+                <span>₹500</span>
+                <span>₹5,000</span>
+                <span>₹10,000</span>
+              </div>
+            </div>
+
+            <!-- Generate Outfit Action Button -->
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+              <button type="submit" class="btn btn-primary btn-lg" style="min-width: 260px;">
+                ✨ Generate My Outfit
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- AI RECOMMENDATION RESULT (Section 5, 6) -->
+        <div id="stylist-result-container" class="recommendation-result-container">
+          <div class="section-header">
+            <div>
+              <span class="badge badge-ai-match">Recommendation Engine Match Result</span>
+              <h2 class="section-title" style="margin-top:6px;">Your AI Recommended Outfit</h2>
+            </div>
+            <div class="ai-match-badge-large">
+              <span>AI Match:</span> <span id="ensemble-match-score">92%</span>
+            </div>
+          </div>
+
+          <!-- Recommended Ensemble Card -->
+          <div class="ensemble-card">
+            <div class="ensemble-header">
+              <h3 id="ensemble-title" style="font-size:1.5rem;">Black Modern Wedding Outfit</h3>
+              <div style="display:flex; gap:10px;">
+                <button id="stylist-add-complete-btn" class="btn btn-primary">
+                  🛍 Add Complete Outfit to Cart
+                </button>
+                <button id="stylist-try-another-btn" class="btn btn-outline">
+                  🔄 Try Another Style
+                </button>
+              </div>
+            </div>
+
+            <div class="ensemble-layout">
+              <!-- AI Match Breakdown Progress Bars (Section 5) -->
+              <div class="ai-score-breakdown-card">
+                <h4 style="font-size:1rem; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+                  <span>📊</span> Matching Score Analytics
+                </h4>
+
+                <div class="score-bar-item">
+                  <div class="score-bar-header">
+                    <span>Occasion Match (25% Weight)</span>
+                    <span id="score-occasion-val">95%</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div id="score-occasion-bar" class="score-bar-fill" style="width: 95%;"></div>
+                  </div>
+                </div>
+
+                <div class="score-bar-item">
+                  <div class="score-bar-header">
+                    <span>Color Match (25% Weight)</span>
+                    <span id="score-color-val">94%</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div id="score-color-bar" class="score-bar-fill" style="width: 94%;"></div>
+                  </div>
+                </div>
+
+                <div class="score-bar-item">
+                  <div class="score-bar-header">
+                    <span>Style Match (25% Weight)</span>
+                    <span id="score-style-val">91%</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div id="score-style-bar" class="score-bar-fill" style="width: 91%;"></div>
+                  </div>
+                </div>
+
+                <div class="score-bar-item">
+                  <div class="score-bar-header">
+                    <span>Size Match (15% Weight)</span>
+                    <span id="score-size-val">90%</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div id="score-size-bar" class="score-bar-fill" style="width: 90%;"></div>
+                  </div>
+                </div>
+
+                <div class="score-bar-item">
+                  <div class="score-bar-header">
+                    <span>Budget Match (10% Weight)</span>
+                    <span id="score-budget-val">89%</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div id="score-budget-bar" class="score-bar-fill" style="width: 89%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Curated Ensemble Pieces List -->
+              <div>
+                <h4 style="font-size:1.05rem; margin-bottom:8px;">Curated Outfit Pieces:</h4>
+                <ul id="ensemble-items-list" class="ensemble-items-list">
+                  <!-- e.g. Black Designer Shirt, Slim Fit Black Trousers, Formal Shoes, Minimal Watch -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Individual Matching Products Grid -->
+          <div class="section-header" style="margin-top: var(--spacing-2xl);">
+            <div>
+              <h3 class="section-title" style="font-size:1.6rem;">Top Recommended Products</h3>
+              <p class="section-desc">Highest scoring individual garments matching your criteria.</p>
+            </div>
+          </div>
+          <div id="ensemble-top-products-grid" class="products-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 3: SHOP CATALOG & SMART SEARCH (Section 7)
+         ==================================================================== -->
+    <section id="view-shop" class="view-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Shop Collection</h1>
+            <p id="shop-results-count" class="section-desc">Showing all products</p>
+          </div>
+          <button id="reset-filters-btn" class="btn btn-outline btn-sm">Reset All Filters</button>
+        </div>
+
+        <!-- Active Filter Chips -->
+        <div id="active-filter-chips" class="active-filters-chips"></div>
+
+        <div class="shop-layout">
+          <!-- Sidebar Filters -->
+          <aside class="filters-sidebar">
+            <h3 style="font-size:1.1rem; margin-bottom:14px; font-weight:800;">Filters</h3>
+
+            <!-- Category Filter -->
+            <div class="filter-block">
+              <div class="filter-title">Category</div>
+              <select id="filter-category" class="form-select" style="padding:8px 12px; font-size:0.85rem;">
+                <option value="All">All Categories</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Kids">Kids</option>
+                <option value="Party Wear">Party Wear</option>
+                <option value="Formal Wear">Formal Wear</option>
+                <option value="Traditional Wear">Traditional Wear</option>
+                <option value="Casual Wear">Casual Wear</option>
+              </select>
+            </div>
+
+            <!-- Price Slider Filter -->
+            <div class="filter-block">
+              <div class="filter-title">
+                <span>Max Price</span>
+                <span id="filter-price-val" style="color:var(--accent-green); font-weight:700;">₹10,000</span>
+              </div>
+              <input 
+                type="range" 
+                id="filter-price-slider" 
+                class="range-slider" 
+                min="1000" 
+                max="10000" 
+                step="500" 
+                value="10000" 
+              />
+            </div>
+
+            <!-- Style Filter -->
+            <div class="filter-block">
+              <div class="filter-title">Style</div>
+              <ul class="filter-options-list">
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="style" value="Modern" /> Modern</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="style" value="Casual" /> Casual</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="style" value="Formal" /> Formal</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="style" value="Traditional" /> Traditional</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="style" value="Streetwear" /> Streetwear</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="style" value="Minimal" /> Minimal</label></li>
+              </ul>
+            </div>
+
+            <!-- Occasion Filter -->
+            <div class="filter-block">
+              <div class="filter-title">Occasion</div>
+              <ul class="filter-options-list">
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="occasion" value="Wedding" /> Wedding</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="occasion" value="Party" /> Party</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="occasion" value="College" /> College</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="occasion" value="Office" /> Office</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="occasion" value="Casual" /> Casual</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="occasion" value="Festival" /> Festival</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="occasion" value="Date" /> Date</label></li>
+              </ul>
+            </div>
+
+            <!-- Color Filter -->
+            <div class="filter-block">
+              <div class="filter-title">Color</div>
+              <ul class="filter-options-list">
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="color" value="Black" /> Black</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="color" value="White" /> White</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="color" value="Blue" /> Blue</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="color" value="Red" /> Red</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="color" value="Green" /> Green</label></li>
+                <li><label class="filter-checkbox-label"><input type="checkbox" class="shop-filter-cb" data-filter-type="color" value="Pink" /> Pink</label></li>
+              </ul>
+            </div>
+
+            <!-- Size Filter -->
+            <div class="filter-block">
+              <div class="filter-title">Size</div>
+              <div class="choice-chips-group">
+                <span class="choice-chip shop-filter-cb-size" onclick="App.activeFilters.size = 'XS'; App.renderShopProducts();">XS</span>
+                <span class="choice-chip shop-filter-cb-size" onclick="App.activeFilters.size = 'S'; App.renderShopProducts();">S</span>
+                <span class="choice-chip shop-filter-cb-size" onclick="App.activeFilters.size = 'M'; App.renderShopProducts();">M</span>
+                <span class="choice-chip shop-filter-cb-size" onclick="App.activeFilters.size = 'L'; App.renderShopProducts();">L</span>
+                <span class="choice-chip shop-filter-cb-size" onclick="App.activeFilters.size = 'XL'; App.renderShopProducts();">XL</span>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Products Grid -->
+          <div id="shop-products-grid" class="products-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 4: CATEGORIES PAGE (Section 2 & 3)
+         ==================================================================== -->
+    <section id="view-categories" class="view-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">All Categories</h1>
+            <p class="section-desc">Browse fashion styles by wardrobe department and occasion.</p>
+          </div>
+        </div>
+        <div id="categories-view-grid" class="categories-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+          <!-- Populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 5: RECOMMENDATIONS HUB (Section 9, 10, 11)
+         Color Advisor, Size Advisor & Image Search Prototype
+         ==================================================================== -->
+    <section id="view-recommendations" class="view-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="badge badge-ai-match">AI Fashion Toolset</span>
+            <h1 class="section-title" style="margin-top:6px;">Smart Style Advisors</h1>
+            <p class="section-desc">Specialized AI micro-tools for color palettes, exact body sizing, and visual image search.</p>
+          </div>
+        </div>
+
+        <div class="tools-grid">
+          <!-- SECTION 9: AI COLOR RECOMMENDATION -->
+          <div class="tool-card">
+            <h3 style="display:flex; align-items:center; gap:8px; font-size:1.25rem; margin-bottom:12px;">
+              <span>🎨</span> Find Your Perfect Color
+            </h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:14px;">
+              Select your skin tone preference and style context. Our color theory matrix reveals your most flattering shades.
+            </p>
+
+            <div class="form-group">
+              <label class="form-label" for="color-skin-tone">Skin Tone Complexion</label>
+              <select id="color-skin-tone" class="form-select">
+                <option value="fair">Fair / Porcelain Complexion</option>
+                <option value="medium" selected>Medium / Wheatish Complexion</option>
+                <option value="olive">Olive Complexion</option>
+                <option value="deep">Deep / Rich Complexion</option>
+              </select>
+            </div>
+
+            <button id="generate-color-palette-btn" class="btn btn-secondary btn-full">
+              ✨ Recommend Colors
+            </button>
+
+            <!-- Results container -->
+            <div id="color-palette-results" style="margin-top:16px;">
+              <div class="color-swatch-display">
+                <div class="color-swatch-item" style="background:#0f172a;"><span>Black</span></div>
+                <div class="color-swatch-item" style="background:#1e3a8a;"><span>Navy Blue</span></div>
+                <div class="color-swatch-item" style="background:#831843;"><span>Burgundy</span></div>
+                <div class="color-swatch-item" style="background:#ffffff; color:#000;"><span>White</span></div>
+              </div>
+              <button class="btn btn-sm btn-primary" onclick="App.activeFilters.color = 'Black'; App.navigate('shop');" style="margin-top:6px;">
+                🛍 Shop These Colors
+              </button>
+            </div>
+          </div>
+
+          <!-- SECTION 10: AI SIZE RECOMMENDATION -->
+          <div class="tool-card">
+            <h3 style="display:flex; align-items:center; gap:8px; font-size:1.25rem; margin-bottom:12px;">
+              <span>📏</span> Find My Perfect Size
+            </h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:14px;">
+              Neural size estimator predicting garment dimensions with standard comfort ease.
+            </p>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+              <div class="form-group">
+                <label class="form-label" for="size-input-height">Height (cm)</label>
+                <input type="number" id="size-input-height" class="form-control" value="175" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="size-input-weight">Weight (kg)</label>
+                <input type="number" id="size-input-weight" class="form-control" value="70" />
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+              <div class="form-group">
+                <label class="form-label" for="size-input-chest">Chest/Waist (in)</label>
+                <input type="number" id="size-input-chest" class="form-control" value="39" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="size-input-fit">Preferred Fit</label>
+                <select id="size-input-fit" class="form-select">
+                  <option value="Slim">Slim Fit</option>
+                  <option value="Regular" selected>Regular Fit</option>
+                  <option value="Relaxed">Relaxed / Oversized</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="calculate-size-btn" class="btn btn-primary btn-full">
+              📏 Calculate AI Size
+            </button>
+
+            <!-- Output (Section 10) -->
+            <div id="size-recommendation-result">
+              <div style="background: var(--bg-surface-elevated); border:1px solid var(--border-accent); border-radius: var(--radius-md); padding: var(--spacing-md); margin-top:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Recommended Size</div>
+                    <div style="font-size:2rem; font-weight:800; color:var(--accent-purple);">M</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <span class="badge badge-ai-match" style="font-size:0.85rem;">90% Confidence</span>
+                  </div>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:8px;">
+                  This size should provide a comfortable regular fit.
+                </p>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:8px; border-top:1px dashed var(--border-subtle); padding-top:6px;">
+                  * Prototype recommendation, not a guaranteed measurement.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 11: IMAGE-BASED SEARCH PROTOTYPE -->
+          <div class="tool-card">
+            <h3 style="display:flex; align-items:center; gap:8px; font-size:1.25rem; margin-bottom:12px;">
+              <span>📸</span> Search by Image
+            </h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:14px;">
+              Upload any dress photo or screenshot to find visually matching pieces in our catalog.
+            </p>
+
+            <input type="file" id="image-upload-input" accept="image/*" style="display:none;" />
+            <div id="image-upload-dropzone" class="upload-dropzone">
+              <div style="font-size:2rem; margin-bottom:6px;">📤</div>
+              <div style="font-weight:700; color:var(--text-primary);">Upload Dress Image</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">Drag & drop JPG/PNG or click to browse</div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <span style="font-size:0.78rem; color:var(--text-muted);">Try Sample Images:</span>
+              <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;">
+                <button class="btn btn-sm btn-outline image-search-preset" data-preset="black_modern_dress.jpg">Black Modern Dress</button>
+                <button class="btn btn-sm btn-outline image-search-preset" data-preset="blue_formal_blazer.jpg">Blue Formal Blazer</button>
+                <button class="btn btn-sm btn-outline image-search-preset" data-preset="casual_streetwear_hoodie.jpg">Casual Hoodie</button>
+              </div>
+            </div>
+
+            <!-- Simulated Visual Results (Section 11) -->
+            <div id="image-search-results">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 6: WISHLIST (Section 13)
+         ==================================================================== -->
+    <section id="view-wishlist" class="view-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">My Wishlist</h1>
+            <p class="section-desc">Garments you've saved for future occasions.</p>
+          </div>
+        </div>
+        <div id="wishlist-products-grid" class="products-grid"></div>
+        <div id="wishlist-empty-state" style="display:none; text-align:center; padding:var(--spacing-3xl); background:var(--bg-surface-elevated); border-radius:var(--radius-xl);">
+          <div style="font-size:3rem; margin-bottom:12px;">💔</div>
+          <h3>Your Wishlist is Empty</h3>
+          <p style="color:var(--text-muted); margin: 8px 0 20px;">Save styles you love while browsing to view them here anytime.</p>
+          <a href="#shop" class="btn btn-primary" data-nav="shop">Start Exploring Outfits</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 7: SHOPPING CART (Section 14)
+         ==================================================================== -->
+    <section id="view-cart" class="view-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Shopping Cart</h1>
+            <p class="section-desc">Review your selected fashion items and outfit packages.</p>
+          </div>
+        </div>
+
+        <div class="cart-layout">
+          <div>
+            <div id="cart-items-list" class="cart-items-card">
+              <!-- Dynamically populated cart items -->
+            </div>
+            <div id="cart-empty-state" style="display:none; text-align:center; padding:var(--spacing-3xl); background:var(--bg-surface-elevated); border-radius:var(--radius-xl);">
+              <div style="font-size:3rem; margin-bottom:12px;">🛍️</div>
+              <h3>Your Shopping Cart is Empty</h3>
+              <p style="color:var(--text-muted); margin: 8px 0 20px;">Use our AI Stylist or catalog to add outfits to your cart.</p>
+              <a href="#shop" class="btn btn-primary" data-nav="shop">Shop Trending Fashion</a>
+            </div>
+          </div>
+
+          <!-- Order Summary Card -->
+          <div class="order-summary-card">
+            <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:16px;">Order Summary</h3>
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <span id="cart-subtotal">₹0</span>
+            </div>
+            <div class="summary-line">
+              <span>AI Promotional Discount</span>
+              <span id="cart-discount" style="color:var(--accent-green); font-weight:700;">-₹0</span>
+            </div>
+            <div class="summary-line">
+              <span>Delivery</span>
+              <span id="cart-delivery">FREE</span>
+            </div>
+            <div class="summary-line summary-total">
+              <span>Grand Total</span>
+              <span id="cart-grand-total">₹0</span>
+            </div>
+
+            <div style="margin-top: var(--spacing-lg);">
+              <button id="proceed-checkout-btn" class="btn btn-primary btn-full btn-lg" onclick="App.navigate('checkout');">
+                Proceed to Checkout →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 8: CHECKOUT (Section 15)
+         ==================================================================== -->
+    <section id="view-checkout" class="view-section">
+      <div class="container" style="max-width: 820px;">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Checkout</h1>
+            <p class="section-desc">Enter your shipping details and select a secure payment method.</p>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-medium); border-radius:var(--radius-xl); padding:var(--spacing-2xl);">
+          <form id="checkout-form">
+            <h3 style="font-size:1.15rem; margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+              📍 Shipping Address
+            </h3>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
+              <div class="form-group">
+                <label class="form-label" for="checkout-name">Full Name</label>
+                <input type="text" id="checkout-name" class="form-control" value="Aarav Sharma" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-email">Email Address</label>
+                <input type="email" id="checkout-email" class="form-control" value="aarav.sharma@fashionai.in" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="checkout-phone">Phone Number</label>
+              <input type="tel" id="checkout-phone" class="form-control" value="+91 98450 12345" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="checkout-address">Street Address</label>
+              <input type="text" id="checkout-address" class="form-control" value="42 Indiranagar 100ft Road" required />
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px;">
+              <div class="form-group">
+                <label class="form-label" for="checkout-city">City</label>
+                <input type="text" id="checkout-city" class="form-control" value="Bengaluru" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-state">State</label>
+                <input type="text" id="checkout-state" class="form-control" value="Karnataka" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-pincode">Pincode</label>
+                <input type="text" id="checkout-pincode" class="form-control" value="560038" required />
+              </div>
+            </div>
+
+            <h3 style="font-size:1.15rem; margin: 24px 0 14px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+              💳 Payment Options (Simulation)
+            </h3>
+
+            <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px;">
+              <label class="filter-checkbox-label" style="padding:12px; border:1px solid var(--border-medium); border-radius:var(--radius-md);">
+                <input type="radio" name="payment-method" value="UPI (Google Pay / PhonePe)" checked />
+                <span style="font-weight:700; margin-left:6px;">⚡ UPI (Instant GPay / PhonePe / Paytm)</span>
+              </label>
+              <label class="filter-checkbox-label" style="padding:12px; border:1px solid var(--border-medium); border-radius:var(--radius-md);">
+                <input type="radio" name="payment-method" value="Credit/Debit Card" />
+                <span style="font-weight:700; margin-left:6px;">💳 Credit / Debit Card (Visa, Mastercard, RuPay)</span>
+              </label>
+              <label class="filter-checkbox-label" style="padding:12px; border:1px solid var(--border-medium); border-radius:var(--radius-md);">
+                <input type="radio" name="payment-method" value="Cash on Delivery" />
+                <span style="font-weight:700; margin-left:6px;">💵 Cash on Delivery (COD)</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full btn-lg">
+              Place Order ✨
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 9: ORDER TRACKING (Section 16)
+         ==================================================================== -->
+    <section id="view-orders" class="view-section">
+      <div class="container" style="max-width: 900px;">
+        <div class="section-header">
+          <div>
+            <span class="badge badge-ai-match">Live Delivery Status</span>
+            <h1 class="section-title" style="margin-top:6px;">Order Tracking</h1>
+            <p class="section-desc">Track real-time shipment progress from our automated fulfillment center.</p>
+          </div>
+          <button id="advance-order-step-btn" class="btn btn-outline btn-sm">
+            ▶ Simulate Next Delivery Status
+          </button>
+        </div>
+
+        <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-medium); border-radius:var(--radius-xl); padding:var(--spacing-2xl);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid var(--border-subtle); padding-bottom:16px;">
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Order ID</div>
+              <div id="tracking-order-id" style="font-size:1.6rem; font-weight:800; color:var(--accent-purple);">#AI2026001</div>
+            </div>
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Placed On</div>
+              <div id="tracking-order-date" style="font-weight:700;">2026-09-28 14:30</div>
+            </div>
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Total Invoiced</div>
+              <div id="tracking-order-total" style="font-weight:800; color:var(--accent-green);">₹4,298</div>
+            </div>
+            <div>
+              <span id="tracking-order-status" class="badge badge-ai-match" style="font-size:0.85rem;">Processing</span>
+            </div>
+          </div>
+
+          <!-- Stepper Component (Section 16) -->
+          <div class="stepper-container">
+            <div class="stepper">
+              <div id="stepper-progress-line" class="stepper-progress-line" style="width: 40%;"></div>
+              
+              <div id="step-placed" class="step-node completed">
+                <div class="step-circle">✓</div>
+                <div class="step-title">Order Placed</div>
+              </div>
+              <div id="step-confirmed" class="step-node completed">
+                <div class="step-circle">✓</div>
+                <div class="step-title">Payment Confirmed</div>
+              </div>
+              <div id="step-processing" class="step-node current">
+                <div class="step-circle">●</div>
+                <div class="step-title">Processing</div>
+              </div>
+              <div id="step-shipped" class="step-node">
+                <div class="step-circle">○</div>
+                <div class="step-title">Shipped</div>
+              </div>
+              <div id="step-delivery" class="step-node">
+                <div class="step-circle">○</div>
+                <div class="step-title">Out for Delivery</div>
+              </div>
+              <div id="step-delivered" class="step-node">
+                <div class="step-circle">○</div>
+                <div class="step-title">Delivered</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Items in Order -->
+          <h4 style="font-size:1.05rem; margin-bottom:10px;">Items in this Shipment</h4>
+          <div id="order-tracking-items-list">
+            <!-- Dynamically populated from Store -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 10: USER PROFILE (Section 17)
+         ==================================================================== -->
+    <section id="view-profile" class="view-section">
+      <div class="container" style="max-width: 960px;">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">User Profile</h1>
+            <p class="section-desc">Manage your fashion identity, body measurements, and AI styling history.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 280px 1fr; gap:var(--spacing-xl);">
+          <!-- Profile Card -->
+          <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-medium); border-radius:var(--radius-xl); padding:var(--spacing-xl); text-align:center;">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" style="width:100px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:12px; border:3px solid var(--accent-purple);" />
+            <h3 id="profile-name">Aarav Sharma</h3>
+            <p id="profile-tier" style="font-size:0.8rem; color:var(--accent-purple); font-weight:700; margin-bottom:12px;">AI Elite Club Member</p>
+            <div style="font-size:0.85rem; color:var(--text-muted); text-align:left; border-top:1px solid var(--border-subtle); padding-top:12px;">
+              <div>📧 <span id="profile-email">aarav.sharma@fashionai.in</span></div>
+              <div style="margin-top:6px;">📱 <span id="profile-phone">+91 98450 12345</span></div>
+            </div>
+          </div>
+
+          <!-- Preferences & Measurements -->
+          <div style="display:flex; flex-direction:column; gap:var(--spacing-lg);">
+            <!-- Saved Preferences (Section 17) -->
+            <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-medium); border-radius:var(--radius-xl); padding:var(--spacing-xl);">
+              <h4 style="font-size:1.1rem; margin-bottom:12px; font-weight:800;">Saved AI Preferences</h4>
+              <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px;">
+                <div style="background:var(--bg-surface); padding:10px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.75rem; color:var(--text-muted);">Favorite Style</div>
+                  <div id="profile-pref-style" style="font-weight:700; color:var(--accent-purple);">Modern</div>
+                </div>
+                <div style="background:var(--bg-surface); padding:10px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.75rem; color:var(--text-muted);">Go-To Color</div>
+                  <div id="profile-pref-color" style="font-weight:700; color:var(--accent-pink);">Black</div>
+                </div>
+                <div style="background:var(--bg-surface); padding:10px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.75rem; color:var(--text-muted);">Frequent Occasion</div>
+                  <div id="profile-pref-occasion" style="font-weight:700; color:var(--accent-green);">Wedding</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Saved Sizes (Section 17) -->
+            <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-medium); border-radius:var(--radius-xl); padding:var(--spacing-xl);">
+              <h4 style="font-size:1.1rem; margin-bottom:12px; font-weight:800;">Body Measurements & Fit Profile</h4>
+              <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:8px; text-align:center;">
+                <div style="background:var(--bg-surface); padding:8px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.72rem; color:var(--text-muted);">Height</div>
+                  <div id="profile-size-height" style="font-weight:700;">178 cm</div>
+                </div>
+                <div style="background:var(--bg-surface); padding:8px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.72rem; color:var(--text-muted);">Weight</div>
+                  <div id="profile-size-weight" style="font-weight:700;">72 kg</div>
+                </div>
+                <div style="background:var(--bg-surface); padding:8px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.72rem; color:var(--text-muted);">Chest</div>
+                  <div id="profile-size-chest" style="font-weight:700;">40 in</div>
+                </div>
+                <div style="background:var(--bg-surface); padding:8px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.72rem; color:var(--text-muted);">Waist</div>
+                  <div id="profile-size-waist" style="font-weight:700;">32 in</div>
+                </div>
+                <div style="background:var(--gradient-accent-subtle); border:1px solid var(--border-accent); padding:8px; border-radius:var(--radius-md);">
+                  <div style="font-size:0.72rem; color:var(--accent-purple); font-weight:700;">Ideal Size</div>
+                  <div id="profile-size-saved" style="font-weight:800; font-size:1.1rem; color:var(--accent-purple);">M</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 11: ADMIN DASHBOARD (Section 18)
+         ==================================================================== -->
+    <section id="view-admin" class="view-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="badge badge-ai-match">Commercial Portal</span>
+            <h1 class="section-title" style="margin-top:6px;">Admin Analytics Dashboard</h1>
+            <p class="section-desc">Live retail metrics, inventory tracking, and AI recommendation performance.</p>
+          </div>
+        </div>
+
+        <!-- 4 KPI Stats Cards (Section 18) -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background:rgba(139, 92, 246, 0.15); color:var(--accent-purple);">
+              📦
+            </div>
+            <div>
+              <div id="kpi-products" class="kpi-val">248</div>
+              <div class="kpi-label">Total Products</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background:rgba(6, 182, 212, 0.15); color:var(--accent-cyan);">
+              👥
+            </div>
+            <div>
+              <div id="kpi-customers" class="kpi-val">1,240</div>
+              <div class="kpi-label">Total Customers</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background:rgba(236, 72, 153, 0.15); color:var(--accent-pink);">
+              🛍️
+            </div>
+            <div>
+              <div id="kpi-orders" class="kpi-val">856</div>
+              <div class="kpi-label">Total Orders</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background:rgba(16, 185, 129, 0.15); color:var(--accent-green);">
+              💰
+            </div>
+            <div>
+              <div id="kpi-revenue" class="kpi-val">₹4,85,600</div>
+              <div class="kpi-label">Total Revenue</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Charts (Section 18: Sales, Orders, Categories, AI Recommendation Usage) -->
+        <div class="admin-charts-grid">
+          <!-- Sales Trend Chart -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4 style="font-weight:700;">📈 Monthly Sales Revenue (₹)</h4>
+              <span class="badge badge-ai-match">+24.8% vs last month</span>
+            </div>
+            <div id="sales-svg-chart" class="svg-chart-container"></div>
+          </div>
+
+          <!-- Orders by Status Chart -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4 style="font-weight:700;">📦 Orders Distribution by Status</h4>
+              <span style="font-size:0.8rem; color:var(--text-muted);">856 Active</span>
+            </div>
+            <div id="orders-svg-chart" class="svg-chart-container"></div>
+          </div>
+        </div>
+
+        <!-- Inventory Table (Section 18) -->
+        <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-medium); border-radius:var(--radius-xl); padding:var(--spacing-xl);">
+          <div class="section-header" style="margin-bottom:14px;">
+            <h4 style="font-size:1.15rem; font-weight:800;">Inventory & Stock Management</h4>
+            <span class="badge" style="background:var(--badge-bg); border:1px solid var(--border-subtle);">Active Catalog: 248 SKUs</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem; text-align:left;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border-medium); color:var(--text-muted); font-size:0.75rem; text-transform:uppercase;">
+                  <th style="padding:10px;">Product Name</th>
+                  <th style="padding:10px;">Category</th>
+                  <th style="padding:10px;">Price</th>
+                  <th style="padding:10px;">Inventory Status</th>
+                  <th style="padding:10px;">Rating</th>
+                </tr>
+              </thead>
+              <tbody id="admin-inventory-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 12: SYSTEM ARCHITECTURE & DATABASE MODEL (Section 19, 20)
+         ==================================================================== -->
+    <section id="view-architecture" class="view-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="badge badge-ai-match">Engineering Specifications</span>
+            <h1 class="section-title" style="margin-top:6px;">System Architecture & Database Model</h1>
+            <p class="section-desc">Production-ready tier architecture and relational schema design.</p>
+          </div>
+        </div>
+
+        <!-- Section 19: System Architecture Visual Flow -->
+        <div class="arch-diagram-card">
+          <h3 style="font-size:1.3rem; margin-bottom:16px;">📐 Visual End-to-End System Architecture</h3>
+          <div class="arch-visual-flow">
+            <div class="arch-node" style="border-color:var(--accent-green); background:rgba(16, 185, 129, 0.1);">
+              👤 USER (Shopper / Client Browser)
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node" style="border-color:var(--accent-purple);">
+              🖥️ Frontend Layer (HTML5 / Modern CSS / ES6+ JavaScript SPA)
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node" style="border-color:var(--accent-cyan);">
+              ⚡ Backend API Gateway (Node.js Express / FastAPI Ready)
+            </div>
+            <div class="arch-arrow">┌───────────────┴───────────────┐</div>
+            <div style="display:flex; gap:40px; justify-content:center; width:100%; max-width:600px;">
+              <div class="arch-node" style="flex:1;">
+                🗄️ Relational Database<br/>
+                <span style="font-size:0.8rem; color:var(--text-muted);">(Products, Users, Orders)</span>
+              </div>
+              <div class="arch-node" style="flex:1; border-color:var(--accent-pink); background:rgba(236, 72, 153, 0.1);">
+                🧠 AI Engine Module<br/>
+                <span style="font-size:0.8rem; color:var(--text-muted);">(Weighted Recommendation & NLP)</span>
+              </div>
+            </div>
+            <div class="arch-arrow">└───────────────┬───────────────┘</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node" style="border-color:var(--accent-green);">
+              ✨ Scored & Personalized Recommendations Array
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node" style="border-color:var(--accent-purple);">
+              🛍️ Rendered Outfits on Frontend Client
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 20: Database Model -->
+        <div class="section-header" style="margin-top: var(--spacing-2xl);">
+          <h3 class="section-title" style="font-size:1.6rem;">🗄️ Database Schemas (Relational DDL)</h3>
+        </div>
+        <div id="database-schemas-grid" class="schema-cards-grid">
+          <!-- Populated from data.js (Users, Products, Orders, Recommendations) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 13: CUSTOMER PROBLEM VALIDATION (Section 21)
+         ==================================================================== -->
+    <section id="view-problem" class="view-section">
+      <div class="container" style="max-width: 860px;">
+        <div class="section-header">
+          <div>
+            <span class="badge badge-ai-match">Market Research & Validation</span>
+            <h1 class="section-title" style="margin-top:6px;">Customer Problem & Solution Fit</h1>
+            <p class="section-desc">Validating the high cognitive friction of modern fashion e-commerce.</p>
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <h3 style="font-size:1.25rem; color:var(--accent-pink); margin-bottom:12px;">The Core Problem</h3>
+          <blockquote style="font-size:1.15rem; font-style:italic; line-height:1.6; border-left:4px solid var(--accent-pink); padding-left:16px; margin-bottom:20px; color:var(--text-primary);">
+            “Online fashion shoppers often spend too much time searching through many products and may find it difficult to choose an outfit suitable for a particular occasion.”
+          </blockquote>
+
+          <h3 style="font-size:1.25rem; color:var(--accent-green); margin:24px 0 12px;">Our AI Solution Flow</h3>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; background:var(--bg-surface); padding:16px; border-radius:var(--radius-lg); border:1px solid var(--border-medium);">
+            <div style="text-align:center;"><strong>User Preferences</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Occasion, Color, Fit</span></div>
+            <div style="color:var(--accent-purple); font-weight:800;">→</div>
+            <div style="text-align:center;"><strong>AI Recommendation</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Weighted Match Model</span></div>
+            <div style="color:var(--accent-purple); font-weight:800;">→</div>
+            <div style="text-align:center;"><strong>Personalized Outfits</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Curated Ensemble</span></div>
+            <div style="color:var(--accent-purple); font-weight:800;">→</div>
+            <div style="text-align:center;"><strong>Faster Selection</strong><br/><span style="font-size:0.75rem; color:var(--accent-green); font-weight:700;">85% Time Saved</span></div>
+          </div>
+
+          <!-- Interactive Shopper Feedback Form (Section 21) -->
+          <div style="margin-top:32px; border-top:1px solid var(--border-subtle); padding-top:24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <h4 style="font-size:1.1rem; font-weight:700;">Shopper Survey: What is the biggest difficulty you face when shopping online?</h4>
+              <span id="poll-total-votes" class="badge" style="background:var(--badge-bg);">1,766 surveyed</span>
+            </div>
+
+            <!-- Poll Option 1 -->
+            <div class="poll-option-bar poll-vote-btn" data-poll-option="style">
+              <div class="poll-label-row">
+                <span>Finding the right style</span>
+                <span id="poll-val-style">342 votes (19%)</span>
+              </div>
+              <div class="poll-track"><div id="poll-bar-style" class="poll-fill" style="width:19%;"></div></div>
+            </div>
+
+            <!-- Poll Option 2 -->
+            <div class="poll-option-bar poll-vote-btn" data-poll-option="size">
+              <div class="poll-label-row">
+                <span>Choosing the right size</span>
+                <span id="poll-val-size">512 votes (29%)</span>
+              </div>
+              <div class="poll-track"><div id="poll-bar-size" class="poll-fill" style="width:29%;"></div></div>
+            </div>
+
+            <!-- Poll Option 3 -->
+            <div class="poll-option-bar poll-vote-btn" data-poll-option="color">
+              <div class="poll-label-row">
+                <span>Choosing colors</span>
+                <span id="poll-val-color">189 votes (11%)</span>
+              </div>
+              <div class="poll-track"><div id="poll-bar-color" class="poll-fill" style="width:11%;"></div></div>
+            </div>
+
+            <!-- Poll Option 4 -->
+            <div class="poll-option-bar poll-vote-btn" data-poll-option="occasion">
+              <div class="poll-label-row">
+                <span>Finding outfits for occasions</span>
+                <span id="poll-val-occasion">428 votes (24%)</span>
+              </div>
+              <div class="poll-track"><div id="poll-bar-occasion" class="poll-fill" style="width:24%;"></div></div>
+            </div>
+
+            <!-- Poll Option 5 -->
+            <div class="poll-option-bar poll-vote-btn" data-poll-option="choices">
+              <div class="poll-label-row">
+                <span>Too many choices</span>
+                <span id="poll-val-choices">295 votes (17%)</span>
+              </div>
+              <div class="poll-track"><div id="poll-bar-choices" class="poll-fill" style="width:17%;"></div></div>
+            </div>
+
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:12px;">
+              💡 Click on any difficulty bar above to record your vote live!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 14: AI PROMPT AUDIT (Section 22)
+         ==================================================================== -->
+    <section id="view-audit" class="view-section">
+      <div class="container" style="max-width: 960px;">
+        <div class="section-header">
+          <div>
+            <span class="badge badge-ai-match">Algorithm Verification</span>
+            <h1 class="section-title" style="margin-top:6px;">AI Recommendation Test & Audit</h1>
+            <p class="section-desc">Live parser audit testing natural language input extraction against the scoring engine.</p>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-medium); border-radius:var(--radius-xl); padding:var(--spacing-2xl);">
+          <div class="form-group">
+            <label class="form-label" for="prompt-audit-input">User Prompt Query</label>
+            <div style="display:flex; gap:10px;">
+              <input 
+                type="text" 
+                id="prompt-audit-input" 
+                class="form-control" 
+                value="I need a black modern outfit for a wedding under ₹3000." 
+              />
+              <button id="run-prompt-audit-btn" class="btn btn-primary" style="flex-shrink:0;">
+                Run AI Audit
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;">
+            <span style="font-size:0.75rem; color:var(--text-muted);">Try Sample Prompts:</span>
+            <button class="btn btn-sm btn-outline audit-preset-btn" data-prompt="I need a black modern outfit for a wedding under ₹3000.">Wedding Under ₹3000</button>
+            <button class="btn btn-sm btn-outline audit-preset-btn" data-prompt="Casual streetwear hoodie for college under ₹2000">College Casual Hoodie</button>
+            <button class="btn btn-sm btn-outline audit-preset-btn" data-prompt="Traditional blue silk dress for festival under ₹5000">Traditional Blue Silk</button>
+          </div>
+
+          <!-- Entity Extraction Display (Section 22) -->
+          <h4 style="font-size:1.1rem; margin-bottom:12px; font-weight:800;">AI Processing Entity Extraction</h4>
+          <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-bottom:24px;">
+            <div style="background:var(--bg-surface); padding:12px; border-radius:var(--radius-md); border-left:3px solid var(--accent-purple);">
+              <div style="font-size:0.75rem; color:var(--text-muted);">Occasion</div>
+              <div id="audit-display-occasion" style="font-weight:800; font-size:1.1rem;">Wedding</div>
+            </div>
+            <div style="background:var(--bg-surface); padding:12px; border-radius:var(--radius-md); border-left:3px solid var(--accent-pink);">
+              <div style="font-size:0.75rem; color:var(--text-muted);">Color</div>
+              <div id="audit-display-color" style="font-weight:800; font-size:1.1rem;">Black</div>
+            </div>
+            <div style="background:var(--bg-surface); padding:12px; border-radius:var(--radius-md); border-left:3px solid var(--accent-cyan);">
+              <div style="font-size:0.75rem; color:var(--text-muted);">Style</div>
+              <div id="audit-display-style" style="font-weight:800; font-size:1.1rem;">Modern</div>
+            </div>
+            <div style="background:var(--bg-surface); padding:12px; border-radius:var(--radius-md); border-left:3px solid var(--accent-green);">
+              <div style="font-size:0.75rem; color:var(--text-muted);">Budget</div>
+              <div id="audit-display-budget" style="font-weight:800; font-size:1.1rem;">₹3,000</div>
+            </div>
+          </div>
+
+          <!-- Prompt Audit Result Table -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h4 style="font-size:1.05rem; font-weight:800;">Recommended Products & Match Scores</h4>
+            <span class="badge badge-ai-match">Prompt Result: Successful</span>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem; text-align:left;">
+              <thead>
+                <tr style="border-bottom:2px solid var(--border-medium); color:var(--text-muted); font-size:0.75rem; text-transform:uppercase;">
+                  <th style="padding:10px;">Item</th>
+                  <th style="padding:10px;">Category</th>
+                  <th style="padding:10px;">Price</th>
+                  <th style="padding:10px;">Match Score</th>
+                  <th style="padding:10px;">AI Reasoning</th>
+                </tr>
+              </thead>
+              <tbody id="audit-results-table-body">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       PRODUCT DETAILS QUICK-VIEW MODAL (Section 8)
+       ==================================================================== -->
+  <div id="product-detail-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="App.closeProductModal();">✕</button>
+      <div class="product-modal-grid">
+        <div class="product-modal-image-col">
+          <img id="modal-prod-image" src="" alt="Product Detail" />
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <span id="modal-prod-discount" class="badge badge-discount" style="width:fit-content; margin-bottom:8px;">-45% OFF</span>
+          <h2 id="modal-prod-name" style="font-size:1.6rem; font-weight:800; margin-bottom:6px;">Product Name</h2>
+          
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <span id="modal-prod-price" style="font-size:1.5rem; font-weight:800; color:var(--accent-green);">₹2,499</span>
+            <span id="modal-prod-original-price" style="text-decoration:line-through; color:var(--text-muted);">₹4,999</span>
+            <span id="modal-prod-rating" style="font-size:0.85rem; font-weight:700; color:#f59e0b;">★ 4.9 (142 reviews)</span>
+          </div>
+
+          <!-- Why AI Recommended This (Section 8) -->
+          <div class="ai-reasoning-box">
+            <h5><span>✨</span> Why AI Recommended This?</h5>
+            <p id="modal-prod-ai-reason">
+              This product matches your selected black color, modern style, wedding occasion, and preferred budget.
+            </p>
+          </div>
+
+          <p id="modal-prod-desc" style="color:var(--text-secondary); font-size:0.9rem; line-height:1.5; margin-bottom:14px;">
+            Description
+          </p>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; font-size:0.82rem; margin-bottom:14px; background:var(--bg-surface); padding:10px; border-radius:var(--radius-md);">
+            <div><strong>Material:</strong> <span id="modal-prod-material" style="color:var(--text-muted);">Silk</span></div>
+            <div><strong>Occasion:</strong> <span id="modal-prod-occasion" style="color:var(--text-muted);">Wedding</span></div>
+            <div><strong>Style:</strong> <span id="modal-prod-style" style="color:var(--text-muted);">Modern</span></div>
+            <div><strong>Care:</strong> <span style="color:var(--text-muted);">Dry Clean Only</span></div>
+          </div>
+
+          <!-- Size Selection -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:0.82rem; font-weight:700; margin-bottom:6px;">Available Sizes</div>
+            <div id="modal-prod-sizes" class="choice-chips-group"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display:flex; gap:10px; margin-top:auto;">
+            <button id="modal-add-cart-btn" class="btn btn-primary" style="flex:1;">
+              Add to Cart
+            </button>
+            <button id="modal-buy-now-btn" class="btn btn-secondary" style="flex:1;">
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       FLOATING AI FASHION CHATBOT (Section 12)
+       ==================================================================== -->
+  <button id="chatbot-float-trigger" class="chatbot-trigger-btn" onclick="Chatbot.toggle();">
+    <span>🤖</span>
+    <span>AI Fashion Assistant</span>
+  </button>
+
+  <div id="chatbot-widget" class="chatbot-widget">
+    <div class="chat-header">
+      <div class="chat-header-title">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <div style="font-weight:800; font-size:0.95rem;">AI Stylist Chat</div>
+          <div style="font-size:0.72rem; opacity:0.85;">Online • Ready to style you</div>
+        </div>
+      </div>
+      <button class="chat-close-btn" onclick="Chatbot.toggle();">✕</button>
+    </div>
+
+    <!-- Message stream -->
+    <div id="chat-messages" class="chat-messages"></div>
+
+    <!-- Input bar -->
+    <div class="chat-input-bar">
+      <input 
+        type="text" 
+        id="chat-input" 
+        class="chat-input" 
+        placeholder="Ask about wedding, party, or college styles..." 
+      />
+      <button class="chat-send-btn" onclick="Chatbot.handleSendMessage();">➤</button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo" data-nav="home">
+            <div class="brand-icon-box">👗</div>
+            <div class="brand-title">
+              <span class="main-name">AI Smart Dress Shop</span>
+            </div>
+          </a>
+          <p>
+            An intelligent fashion shopping platform that combines multi-attribute weighted recommendation algorithms, computer vision simulation, and interactive AI styling assistants.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-nav="home">Home</a></li>
+            <li><a href="#shop" data-nav="shop">Shop Catalog</a></li>
+            <li><a href="#stylist" data-nav="stylist">✨ AI Stylist</a></li>
+            <li><a href="#categories" data-nav="categories">Categories</a></li>
+            <li><a href="#recommendations" data-nav="recommendations">AI Recommendations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#wishlist" data-nav="wishlist">My Wishlist</a></li>
+            <li><a href="#cart" data-nav="cart">Shopping Cart</a></li>
+            <li><a href="#orders" data-nav="orders">Order Tracking (#AI2026001)</a></li>
+            <li><a href="#profile" data-nav="profile">User Profile</a></li>
+            <li><a href="#admin" data-nav="admin">Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>System Specs</h4>
+          <ul class="footer-links">
+            <li><a href="#architecture" data-nav="architecture">System Architecture</a></li>
+            <li><a href="#architecture" data-nav="architecture">Database Model</a></li>
+            <li><a href="#problem" data-nav="problem">Customer Problem</a></li>
+            <li><a href="#audit" data-nav="audit">AI Prompt Audit</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 AI Smart Dress Shop. Designed for Next-Generation Fashion Retail.
+        </div>
+        <div class="footer-tech-badges">
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">Modern CSS3</span>
+          <span class="tech-badge">Vanilla ES6+ JS</span>
+          <span class="tech-badge">Responsive</span>
+          <span class="tech-badge">AI Weighted Algorithmic Engine</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/ai-engine.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
